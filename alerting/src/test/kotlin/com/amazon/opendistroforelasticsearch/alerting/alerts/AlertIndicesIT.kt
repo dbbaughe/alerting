@@ -210,6 +210,6 @@ class AlertIndicesIT : AlertingRestTestCase() {
         val response = client().makeRequest("POST", "${AlertIndices.HISTORY_ALL}/_search", emptyMap(),
                 StringEntity(request, APPLICATION_JSON))
         assertEquals("Request to get history failed", RestStatus.OK, response.restStatus())
-        return SearchResponse.fromXContent(createParser(jsonXContent, response.entity.content)).hits.totalHits.value
+        return SearchResponse.fromXContent(createParser(jsonXContent, response.entity.content)).hits.totalHits!!.value
     }
 }

@@ -31,7 +31,7 @@ task jacocoMerge(type: JacocoMerge) {
     gradle.projectsEvaluated {
         subprojects.each { 
             jacocoMerge.dependsOn it.tasks.withType(JacocoReport)
-            jacocoMerge.executionData it.tasks.withType(JacocoReport).collect { it.executionData } 
+            jacocoMerge.executionData it.tasks.withType(JacocoReport).collect { it.executionData }
         }
     }
     doFirst {

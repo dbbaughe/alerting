@@ -100,7 +100,7 @@ class IndexUtils {
             var oldVersion = NO_SCHEMA_VERSION
             val newVersion = getSchemaVersion(mapping)
 
-            val indexMapping = index.mapping().sourceAsMap()
+            val indexMapping = index.mapping()!!.sourceAsMap()
             if (indexMapping.containsKey(_META) && indexMapping[_META] is HashMap<*, *>) {
                 val metaData = indexMapping[_META] as HashMap<*, *>
                 if (metaData.containsKey(SCHEMA_VERSION)) {

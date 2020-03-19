@@ -184,7 +184,8 @@ class RestIndexMonitorAction(
          * After searching for all existing monitors we validate the system can support another monitor to be created.
          */
         private fun onSearchResponse(response: SearchResponse) {
-            if (response.hits.totalHits.value >= maxMonitors) {
+            val totalHits = response.hits.totalHits
+            if (totalHits == null || totalHits.value >= maxMonitors) {
                 log.error("This request would create more than the allowed monitors [$maxMonitors].")
                 onFailure(IllegalArgumentException("This request would create more than the allowed monitors [$maxMonitors]."))
             } else {
